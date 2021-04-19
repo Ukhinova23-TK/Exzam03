@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace src
 {
@@ -30,6 +34,7 @@ namespace src
             PrintBuses();
             SortBuses();
             PrintBuses();
+            SaveFile();
             Console.ReadLine();
         }
 
@@ -92,16 +97,26 @@ namespace src
 
         static public void PrintBuses()
         {
-            for (int i = 0; i < n; i++)
+            foreach (Bus bus in buses)
             {
-                Console.WriteLine(String.Format("\nНомер маршрута: {0}" +
-                $"\nПервая конечная остановка: {1}" +
-                $"\nВторая конечная остановка: {2}" +
-                $"\nКоличество остановок: {3}",
-                buses[i].NumberRoute,
-                buses[i].EndStop1,
-                buses[i].EndStop2,
-                buses[i].CountStop));
+                Console.WriteLine($"\nНомер маршрута: {bus.NumberRoute} " +
+                    $"\nПервая конечная остановка: {bus.EndStop1} " +
+                    $"\nВторая конечная остановка: {bus.EndStop2} " +
+                    $"\nКоличество остановок: {bus.CountStop}");
+            }
+        }
+
+        static public void SaveFile()
+        {
+            using (StreamWriter sw = new StreamWriter("buses.txt"))
+            {
+                foreach (Bus bus in buses)
+                {
+                    sw.WriteLine(bus.NumberRoute + "<teg> " 
+                        + bus.EndStop1 + "<teg> " 
+                        + bus.EndStop2 + "<teg> " 
+                        + bus.CountStop + "<teg> ");
+                }
             }
         }
     }
