@@ -6,15 +6,15 @@ namespace src
 {
     class Bus
     {
-		private int _numberRoute;
+		private string _numberRoute;
 		private string _endStop1;
 		private string _endStop2;
 		private int _countStop;
 
-		public int NumberRoute
+		public string NumberRoute
 		{
 			get { return _numberRoute; }
-			set { this._numberRoute = Convert.ToInt32(value); }
+			set { this._numberRoute = value; }
 		}
 
 		public string EndStop1
